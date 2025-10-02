@@ -1,0 +1,4 @@
+app.post("/api/pengiriman", async (req, res) => {
+  try {
+    console.log("DEBUG req.body:", req.body);  // 👈 tambahkan ini
+    const { pelanggan, vocer2000, vocer5000, tanggal } = req.body;

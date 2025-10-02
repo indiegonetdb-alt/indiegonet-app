@@ -1,0 +1,88 @@
+### 🔐 Seed Admin (buat admin default kalau belum ada)
+GET http://localhost:5000/api/auth/seed-admin
+
+### 🔐 Login Admin
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "indiego",
+  "password": "net"
+}
+
+### 👤 Debug: lihat semua user
+GET http://localhost:5000/api/debug/users
+
+### 👥 Tambah pelanggan Toko
+POST http://localhost:5000/api/pelanggan
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nama": "Toko Sinar Jaya",
+  "jenis": "toko",
+  "persenan": 10
+}
+
+### 👥 Tambah pelanggan Pribadi
+POST http://localhost:5000/api/pelanggan
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nama": "Budi",
+  "jenis": "pribadi",
+  "jumlahPembayaran": 50000
+}
+
+### 📦 Tambah pengiriman voucher
+POST http://localhost:5000/api/pengiriman
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "pelanggan": "ID_PELANGGAN",
+  "vocer2000": 10,
+  "vocer5000": 5
+}
+
+### 💰 Buat penagihan toko
+POST http://localhost:5000/api/penagihan/toko
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "pelangganId": "ID_PELANGGAN",
+  "sisaVocer2000": 2,
+  "sisaVocer5000": 1
+}
+
+### 💰 Buat penagihan pribadi
+POST http://localhost:5000/api/penagihan/pribadi
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "pelangganId": "ID_PELANGGAN",
+  "jumlahPembayaran": 75000
+}
+
+### 📊 Ambil laporan
+GET http://localhost:5000/api/laporan?jenis=seluruhnya
+
+### 💬 Kirim pesan user
+POST http://localhost:5000/api/pesan
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "jenis": "saran",
+  "isi": "Tolong perbaiki kualitas voucher."
+}
+
+### 🖼️ Upload banner
+POST http://localhost:5000/api/banners
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data
+
+file=@./sample-banner.jpg
