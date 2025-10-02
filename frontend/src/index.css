@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #ef4444;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-xl bg-red-500 text-white hover:opacity-90;
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow p-6;
+}
+
+/* 🔹 Tambahan global style */
+body {
+  margin: 0;
+  background-color: #0a1f44; /* biru navy */
+  color: #fff; /* teks default putih */
+  font-family: Arial, sans-serif;
+}
