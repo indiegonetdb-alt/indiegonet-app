@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
+  "dev": "vite",
+  "build": "npm install --include=dev && vite build",
+  "preview": "vite preview"
+},
   "dependencies": {
     "file-saver": "^2.0.5",
     "jspdf": "^3.0.3",
