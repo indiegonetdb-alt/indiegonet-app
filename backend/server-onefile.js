@@ -329,10 +329,38 @@ app.post("/api/messages", async (req, res) => {
     res.status(500).json({ ok: false, error: err.message });
   }
 });
-
+// Alias untuk user: /api/pesan
+app.post("/api/pesan", async (req, res) => {
+  try {
+    const { user, isi } = req.body;
+    const pesan = new Message({
+      fromUserId: user,
+      toAdmin: true,
+      subject: "Pesan dari user",
+      body: isi,
+      status: "unread",
+    });
+    await pesan.save();
+    res.json({ ok: true, data: pesan });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
 
 // Ambil semua pesan
 app.get("/api/messages", async (req, res) => {
+  try {
+    const data = await Message.find()
+      .populate("fromUserId", "nama username")
+      .sort({ createdAt: -1 });
+
+    res.json({ ok: true, data });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+// Alias untuk ambil semua pesan: /api/pesan
+app.get("/api/pesan", async (req, res) => {
   try {
     const data = await Message.find()
       .populate("fromUserId", "nama username")
