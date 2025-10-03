@@ -9,6 +9,9 @@ export default function Sidebar() {
 
   if (!user) return null;
 
+  // fungsi untuk close sidebar (khusus mobile)
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       {/* Tombol Toggle (Mobile) */}
@@ -32,19 +35,75 @@ export default function Sidebar() {
         <nav className="flex flex-col gap-3 p-4">
           {user.role === "admin" && (
             <>
-              <Link to="/dashboard" className={location.pathname === "/dashboard" ? "font-bold" : ""}>Dashboard</Link>
-              <Link to="/pelanggan" className={location.pathname === "/pelanggan" ? "font-bold" : ""}>Pelanggan</Link>
-              <Link to="/pengiriman" className={location.pathname === "/pengiriman" ? "font-bold" : ""}>Pengiriman</Link>
-              <Link to="/penagihan" className={location.pathname === "/penagihan" ? "font-bold" : ""}>Penagihan</Link>
-              <Link to="/laporan" className={location.pathname === "/laporan" ? "font-bold" : ""}>Laporan</Link>
-              <Link to="/pesan" className={location.pathname === "/pesan" ? "font-bold" : ""}>Pesan</Link>
-              <Link to="/banners" className={location.pathname === "/banners" ? "font-bold" : ""}>Banners</Link>
-              <Link to="/users" className={location.pathname === "/users" ? "font-bold" : ""}>Users</Link>
+              <Link
+                to="/dashboard"
+                onClick={handleClose}
+                className={location.pathname === "/dashboard" ? "font-bold" : ""}
+              >
+                Dashboard
+              </Link>
+              <Link
+                to="/pelanggan"
+                onClick={handleClose}
+                className={location.pathname === "/pelanggan" ? "font-bold" : ""}
+              >
+                Pelanggan
+              </Link>
+              <Link
+                to="/pengiriman"
+                onClick={handleClose}
+                className={location.pathname === "/pengiriman" ? "font-bold" : ""}
+              >
+                Pengiriman
+              </Link>
+              <Link
+                to="/penagihan"
+                onClick={handleClose}
+                className={location.pathname === "/penagihan" ? "font-bold" : ""}
+              >
+                Penagihan
+              </Link>
+              <Link
+                to="/laporan"
+                onClick={handleClose}
+                className={location.pathname === "/laporan" ? "font-bold" : ""}
+              >
+                Laporan
+              </Link>
+              <Link
+                to="/pesan"
+                onClick={handleClose}
+                className={location.pathname === "/pesan" ? "font-bold" : ""}
+              >
+                Pesan
+              </Link>
+              <Link
+                to="/banners"
+                onClick={handleClose}
+                className={location.pathname === "/banners" ? "font-bold" : ""}
+              >
+                Banners
+              </Link>
+              <Link
+                to="/users"
+                onClick={handleClose}
+                className={location.pathname === "/users" ? "font-bold" : ""}
+              >
+                Users
+              </Link>
             </>
           )}
 
           {user.role === "user" && (
-            <Link to="/user/dashboard" className={location.pathname === "/user/dashboard" ? "font-bold" : ""}>Dashboard User</Link>
+            <Link
+              to="/user/dashboard"
+              onClick={handleClose}
+              className={
+                location.pathname === "/user/dashboard" ? "font-bold" : ""
+              }
+            >
+              Dashboard User
+            </Link>
           )}
 
           <div className="mt-6 border-t border-white pt-3">
