@@ -36,21 +36,23 @@ export default function App() {
           {/* Login tunggal */}
           <Route path="/login" element={<Login />} />
 
-          {/* Admin hanya untuk role admin */}
-          <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-            <Route element={<Layout />}>
-              <Route index element={<Navigate to="dashboard" replace />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="pelanggan" element={<MenuPelanggan />} />
-              <Route path="pengiriman" element={<MenuPengiriman />} />
-              <Route path="penagihan" element={<MenuPenagihan />} />
-              <Route path="laporan" element={<MenuLaporan />} />
-              <Route path="pesan" element={<MenuPesan />} />
-              <Route path="banners" element={<MenuBanner />} />
-              <Route path="users" element={<MenuUser />} />
-              <Route path="*" element={<Navigate to="/dashboard" replace />} />
-            </Route>
-          </Route>
+         {/* Admin hanya untuk role admin */}
+<Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+  <Route element={<Layout />}>
+    <Route index element={<Navigate to="dashboard" replace />} />
+    <Route path="dashboard" element={<Dashboard />} />
+    <Route path="pelanggan" element={<MenuPelanggan />} />
+    <Route path="pengiriman" element={<MenuPengiriman />} />
+    <Route path="penagihan" element={<MenuPenagihan />} />
+    <Route path="laporan" element={<MenuLaporan />} />
+    <Route path="pesan" element={<MenuPesan />} />
+    <Route path="banners" element={<MenuBanner />} />
+    <Route path="users" element={<MenuUser />} />
+    {/* ❌ yang ini dihapus:
+    <Route path="*" element={<Navigate to="/dashboard" replace />} /> */}
+  </Route>
+</Route>
+
 
           {/* User hanya untuk role user */}
           <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
