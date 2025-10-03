@@ -13,7 +13,7 @@ import Navbar from "./Navbar";
 import ProtectedRoute from "./ProtectedRoute";
 
 // 👉 Halaman User
-import DashboardUser from "./pages/user/DashboardUser.js";
+import DashboardUser from "./pages/user/Dashboard.jsx";
 import ProfilUser from "./pages/user/ProfilUser.jsx"; // ✅ route baru untuk edit profil
 import MenuPesanUser from "./pages/user/MenuPesanUser.js"; // ✅ import
 
