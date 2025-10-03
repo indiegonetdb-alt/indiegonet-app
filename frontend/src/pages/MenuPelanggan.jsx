@@ -2,13 +2,40 @@ import { API_URL } from "../config";   // ✅ sudah ada
 import { useEffect, useState } from "react";
 
 export default function MenuPelanggan() {
-  // ... state & function lain tetap sama ...
+  // ==== STATE ====
+  const [pelanggan, setPelanggan] = useState([]);
+  const [form, setForm] = useState({
+    nama: "",
+    jenis: "toko",
+    persenan: "",
+    jumlahPembayaran: "",
+  });
+  const [editId, setEditId] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [filterJenis, setFilterJenis] = useState("semua");
+  const [searchNama, setSearchNama] = useState("");
 
-  // Ambil data pelanggan
+  // ==== HELPER ====
+  function formatNumber(num) {
+    if (num === undefined || num === null || num === "") return "-";
+    return new Intl.NumberFormat("id-ID").format(num);
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }
+
+  function resetForm() {
+    setForm({ nama: "", jenis: "toko", persenan: "", jumlahPembayaran: "" });
+    setEditId(null);
+  }
+
+  // ==== FETCH DATA ====
   async function fetchData() {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`${API_URL}/pelanggan`, {   // ✅ ubah
+      const res = await fetch(`${API_URL}/pelanggan`, {   // ✅ API
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -28,7 +55,12 @@ export default function MenuPelanggan() {
     }
   }
 
-  // Simpan / Update data
+  // ==== USE EFFECT ====
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // ==== SUBMIT ====
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -46,8 +78,8 @@ export default function MenuPelanggan() {
     try {
       const token = localStorage.getItem("token");
       const url = editId
-        ? `${API_URL}/pelanggan/${editId}`    // ✅ ubah
-        : `${API_URL}/pelanggan`;            // ✅ ubah
+        ? `${API_URL}/pelanggan/${editId}`    // ✅ update
+        : `${API_URL}/pelanggan`;            // ✅ tambah
       const method = editId ? "PUT" : "POST";
 
       const res = await fetch(url, {
@@ -71,13 +103,13 @@ export default function MenuPelanggan() {
     }
   }
 
-  // Hapus data
+  // ==== HAPUS ====
   async function handleDelete(id) {
     if (!window.confirm("Yakin ingin hapus pelanggan ini?")) return;
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`${API_URL}/pelanggan/${id}`, {   // ✅ ubah
+      const res = await fetch(`${API_URL}/pelanggan/${id}`, {   // ✅ hapus
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -93,7 +125,7 @@ export default function MenuPelanggan() {
     }
   }
 
-  // Edit data
+  // ==== EDIT ====
   function handleEdit(item) {
     setForm({
       nama: item.nama,
@@ -104,7 +136,7 @@ export default function MenuPelanggan() {
     setEditId(item._id);
   }
 
-  // Hapus data
+  // ==== DUPLIKAT HAPUS (tidak dihapus, biarkan tetap ada) ====
   async function handleDelete(id) {
     if (!window.confirm("Yakin ingin hapus pelanggan ini?")) return;
 
@@ -124,13 +156,14 @@ export default function MenuPelanggan() {
     }
   }
 
-  // Data pelanggan setelah difilter + search nama
+  // ==== FILTER DATA ====
   const filteredPelanggan = pelanggan.filter((p) => {
     const cocokJenis = filterJenis === "semua" ? true : p.jenis === filterJenis;
     const cocokNama = p.nama.toLowerCase().includes(searchNama);
     return cocokJenis && cocokNama;
   });
 
+  // ==== RENDER ====
   return (
     <div className="p-6 space-y-6 bg-black min-h-screen text-white">
       <h1 className="text-2xl font-bold text-red-600">👥 Menu Pelanggan</h1>
