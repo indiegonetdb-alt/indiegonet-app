@@ -1,13 +1,18 @@
 {
   "version": 2,
   "builds": [
-    { "src": "server-onefile.js", "use": "@vercel/node" }
+    { "src": "src/server.js", "use": "@vercel/node" }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "server-onefile.js",
+      "src": "/api/(.*)",
+      "dest": "src/server.js",
       "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "src/server.js"
     }
   ]
 }
