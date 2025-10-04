@@ -11,7 +11,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://indiegonet-app.vercel.app", // frontend kamu di Vercel
+      "https://indiegonet.vercel.app", // frontend kamu di Vercel
       "http://localhost:5173"              // untuk pengujian lokal
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
