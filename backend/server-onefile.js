@@ -8,7 +8,16 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://indiegonet-app.vercel.app", // frontend kamu di Vercel
+      "http://localhost:5173"              // untuk pengujian lokal
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // ==== MongoDB Connect ====
