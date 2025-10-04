@@ -17,7 +17,7 @@ export default function Sidebar() {
       {/* Tombol Toggle (Mobile) */}
       <button
         onClick={() => setOpen(!open)}
-        className="md:hidden fixed top-4 left-4 z-50 bg-red-600 text-white px-3 py-2 rounded"
+        className="md:hidden fixed top-4 right-4 z-50 bg-red-600 text-white px-3 py-2 rounded"
       >
         ☰
       </button>

@@ -22,15 +22,7 @@ export default function Navbar() {
           />
           <span className="font-bold">Indiegonet</span>
         </div>
-
-        {/* Tombol Hamburger (muncul di HP) */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-2xl text-white focus:outline-none"
-        >
-          ☰
-        </button>
-      </div>
+        </div>
 
       {/* Menu Navigasi */}
       <div

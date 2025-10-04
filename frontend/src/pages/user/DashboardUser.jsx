@@ -82,11 +82,11 @@ export default function DashboardUser() {
 
   const grandTotal = riwayat.reduce(
     (sum, r) => sum + (r.penerimaanToko || 0),
-  0
-);
+    0
+  );
 
   return (
-    <div className="p-6 bg-red-600 min-h-screen text-black">
+    <div className="p-4 md:p-6 bg-red-600 min-h-screen text-black max-w-5xl mx-auto">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div
@@ -97,9 +97,7 @@ export default function DashboardUser() {
           <span className="text-white font-bold">Indiegonet</span>
         </div>
 
-        <h2 className="text-xl font-bold text-white">Dashboard User</h2>
-
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <img
             src={foto || "/avatar.png"}
             alt="Foto Profil"
@@ -107,13 +105,13 @@ export default function DashboardUser() {
           />
           <button
             onClick={() => navigate("/user/pesan")}
-            className="bg-yellow-400 text-black px-4 py-1 rounded-2xl"
+            className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
           >
             Kirim Pesan
           </button>
           <button
             onClick={() => navigate("/user/profil")}
-            className="bg-yellow-400 text-black px-4 py-1 rounded-2xl"
+            className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
           >
             Edit Profil
           </button>
@@ -122,7 +120,7 @@ export default function DashboardUser() {
               localStorage.clear();
               window.location.href = "/login";
             }}
-            className="bg-white text-red-600 px-4 py-1 rounded-2xl"
+            className="bg-white text-red-600 px-3 py-1 rounded-2xl text-sm md:text-base"
           >
             Logout
           </button>
@@ -130,7 +128,7 @@ export default function DashboardUser() {
       </div>
 
       {/* Banner auto slide */}
-      <div className="relative w-full h-48 overflow-hidden rounded-2xl mb-6">
+      <div className="relative w-full h-40 md:h-48 overflow-hidden rounded-2xl mb-6">
         {banner.length > 0 ? (
           banner.map((b, i) => (
             <div
@@ -145,8 +143,8 @@ export default function DashboardUser() {
                 className="w-full h-full object-cover rounded-2xl"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-2xl">
-                <h4 className="font-bold">{b.judul}</h4>
-                <p className="text-sm">{b.deskripsi}</p>
+                <h4 className="font-bold text-sm md:text-base">{b.judul}</h4>
+                <p className="text-xs md:text-sm">{b.deskripsi}</p>
               </div>
             </div>
           ))
@@ -159,7 +157,7 @@ export default function DashboardUser() {
 
       {/* Notifikasi */}
       {summary.isBest && (
-        <div className="bg-yellow-300 text-yellow-900 p-3 rounded-2xl mb-6 font-semibold text-center">
+        <div className="bg-yellow-300 text-yellow-900 p-3 rounded-2xl mb-6 font-semibold text-center text-sm md:text-base">
           🎉 Selamat {summary.nama}, anda pelanggan terbaik bulan ini!
         </div>
       )}
@@ -168,21 +166,23 @@ export default function DashboardUser() {
       {user?.jenis === "pribadi" ? (
         <>
           {/* 🔹 Ringkasan pribadi */}
-          <div className="flex justify-center gap-4 mb-6">
-            <div className="bg-black text-white p-4 rounded-2xl text-center w-64">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+            <div className="bg-black text-white p-4 rounded-2xl text-center w-full sm:w-64">
               <h4 className="font-semibold text-red-500">Jumlah Pembayaran</h4>
               <p>{summary.jumlahPembayaran?.toLocaleString("id-ID")}</p>
             </div>
-            <div className="bg-black text-white p-4 rounded-2xl text-center w-64">
+            <div className="bg-black text-white p-4 rounded-2xl text-center w-full sm:w-64">
               <h4 className="font-semibold text-red-500">Keterangan</h4>
               <p>Pelanggan Bulanan</p>
             </div>
           </div>
 
           {/* 🔹 Riwayat Pembayaran */}
-          <h3 className="text-lg font-semibold text-white mb-2">Riwayat Pembayaran</h3>
+          <h3 className="text-base md:text-lg font-semibold text-white mb-2">
+            Riwayat Pembayaran
+          </h3>
           <div className="bg-white rounded-2xl p-4 mb-6 overflow-x-auto">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse text-xs sm:text-sm md:text-base min-w-[500px]">
               <thead>
                 <tr className="bg-black text-white">
                   <th className="px-3 py-2 text-left">Tanggal</th>
@@ -209,7 +209,7 @@ export default function DashboardUser() {
       ) : (
         <>
           {/* 🔹 Ringkasan toko */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div className="bg-black text-white p-4 rounded-2xl text-center">
               <h4 className="font-semibold text-red-500">Vocer 2.000</h4>
               <p>{summary.totalV2000?.toLocaleString("id-ID")}</p>
@@ -229,9 +229,11 @@ export default function DashboardUser() {
           </div>
 
           {/* 🔹 Riwayat Pengiriman */}
-          <h3 className="text-lg font-semibold text-white mb-2">Riwayat Pengiriman</h3>
+          <h3 className="text-base md:text-lg font-semibold text-white mb-2">
+            Riwayat Pengiriman
+          </h3>
           <div className="bg-white rounded-2xl p-4 mb-6 overflow-x-auto">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse text-xs sm:text-sm md:text-base min-w-[700px]">
               <thead>
                 <tr className="bg-black text-white">
                   <th className="px-3 py-2 text-left">Tanggal</th>
@@ -248,23 +250,22 @@ export default function DashboardUser() {
                       {new Date(r.tanggal).toLocaleDateString("id-ID")}
                     </td>
                     <td className="px-3 py-2 text-right">
-  {(r.v2000 - (r.sisaV2000 || 0))?.toLocaleString("id-ID")}
-</td>
-<td className="px-3 py-2 text-right">
-  {(r.v5000 - (r.sisaV5000 || 0))?.toLocaleString("id-ID")}
-</td>
-<td className="px-3 py-2 text-right">
-  {r.penerimaanToko?.toLocaleString("id-ID")}
-</td>
-<td className="px-3 py-2 text-center">{r.status || "Belum Ditagih"}</td>
-
+                      {(r.v2000 - (r.sisaV2000 || 0))?.toLocaleString("id-ID")}
+                    </td>
+                    <td className="px-3 py-2 text-right">
+                      {(r.v5000 - (r.sisaV5000 || 0))?.toLocaleString("id-ID")}
+                    </td>
+                    <td className="px-3 py-2 text-right">
+                      {r.penerimaanToko?.toLocaleString("id-ID")}
+                    </td>
+                    <td className="px-3 py-2 text-center">{r.status || "Belum Ditagih"}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
 
             {/* Grand Total */}
-            <div className="mt-4 bg-black text-white p-3 rounded-2xl text-right font-bold">
+            <div className="mt-4 bg-black text-white p-3 rounded-2xl text-right font-bold text-sm md:text-base">
               Grand Total: {grandTotal.toLocaleString("id-ID")}
             </div>
 
@@ -272,7 +273,7 @@ export default function DashboardUser() {
             <div className="flex justify-start mt-4">
               <button
                 onClick={handleExportPDF}
-                className="bg-red-600 text-white px-4 py-2 rounded-2xl"
+                className="bg-red-600 text-white px-4 py-2 rounded-2xl text-sm md:text-base"
               >
                 Export PDF
               </button>
