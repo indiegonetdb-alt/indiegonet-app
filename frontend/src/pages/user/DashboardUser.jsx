@@ -97,34 +97,36 @@ export default function DashboardUser() {
           <span className="text-white font-bold">Indiegonet</span>
         </div>
 
-        <div className="flex items-center gap-2">
-  <img
-    src={foto || "/avatar.png"}
-    alt="Foto Profil"
-    className="w-10 h-10 rounded-full object-cover border-2 border-white"
-  />
-  <button
-    onClick={() => navigate("/user/pesan")}
-    className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
-  >
-    Kirim Pesan
-  </button>
-  <button
-    onClick={() => navigate("/user/profil")}
-    className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
-  >
-    Edit Profil
-  </button>
-  <button
-    onClick={() => {
-      localStorage.clear();
-      window.location.href = "/login";
-    }}
-    className="bg-white text-red-600 px-3 py-1 rounded-2xl text-sm md:text-base"
-  >
-    Logout
-  </button>
-</div>
+        <div className="flex items-center gap-4">
+          {/* 📧 Ikon Pesan */}
+          <span
+            onClick={() => navigate("/user/pesan")}
+            title="Pesan"
+            className="text-2xl cursor-pointer"
+          >
+            📧
+          </span>
+
+          {/* Avatar → klik untuk Edit Profil */}
+          <img
+            src={foto || "/avatar.png"}
+            alt="Foto Profil"
+            onClick={() => navigate("/user/profil")}
+            className="w-10 h-10 rounded-full object-cover border-2 border-white cursor-pointer"
+            title="Edit Profil"
+          />
+
+          {/* Logout */}
+          <button
+            onClick={() => {
+              localStorage.clear();
+              window.location.href = "/login";
+            }}
+            className="bg-white text-red-600 px-3 py-1 rounded-2xl text-sm md:text-base hover:bg-red-100"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
       {/* Banner auto slide */}
@@ -157,7 +159,7 @@ export default function DashboardUser() {
 
       {/* Notifikasi */}
       {summary.isBest && (
-        <div className="bg-yellow-300 text-yellow-900 p-3 rounded-2xl mb-6 font-semibold text-center text-sm md:text-base">
+        <div className="bg-yellow-300 text-yellow-900 p-3 rounded-2xl mb-4 font-semibold text-center text-sm md:text-base">
           🎉 Selamat {summary.nama}, anda pelanggan terbaik bulan ini!
         </div>
       )}
@@ -166,7 +168,7 @@ export default function DashboardUser() {
       {user?.jenis === "pribadi" ? (
         <>
           {/* 🔹 Ringkasan pribadi */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
             <div className="bg-black text-white p-4 rounded-2xl text-center w-full sm:w-64">
               <h4 className="font-semibold text-red-500">Jumlah Pembayaran</h4>
               <p>{summary.jumlahPembayaran?.toLocaleString("id-ID")}</p>
@@ -181,7 +183,7 @@ export default function DashboardUser() {
           <h3 className="text-base md:text-lg font-semibold text-white mb-2">
             Riwayat Pembayaran
           </h3>
-          <div className="bg-white rounded-2xl p-4 mb-6 overflow-x-auto">
+          <div className="bg-white rounded-2xl p-4 mb-4 overflow-x-auto">
             <table className="w-full border-collapse text-xs sm:text-sm md:text-base min-w-[500px]">
               <thead>
                 <tr className="bg-black text-white">
@@ -209,7 +211,7 @@ export default function DashboardUser() {
       ) : (
         <>
           {/* 🔹 Ringkasan toko */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="bg-black text-white p-4 rounded-2xl text-center">
               <h4 className="font-semibold text-red-500">Vocer 2.000</h4>
               <p>{summary.totalV2000?.toLocaleString("id-ID")}</p>
@@ -232,7 +234,7 @@ export default function DashboardUser() {
           <h3 className="text-base md:text-lg font-semibold text-white mb-2">
             Riwayat Pengiriman
           </h3>
-          <div className="bg-white rounded-2xl p-4 mb-6 overflow-x-auto">
+          <div className="bg-white rounded-2xl p-4 mb-4 overflow-x-auto">
             <table className="w-full border-collapse text-xs sm:text-sm md:text-base min-w-[700px]">
               <thead>
                 <tr className="bg-black text-white">
@@ -265,12 +267,12 @@ export default function DashboardUser() {
             </table>
 
             {/* Grand Total */}
-            <div className="mt-4 bg-black text-white p-3 rounded-2xl text-right font-bold text-sm md:text-base">
+            <div className="mt-3 bg-black text-white p-3 rounded-2xl text-right font-bold text-sm md:text-base">
               Grand Total: {grandTotal.toLocaleString("id-ID")}
             </div>
 
             {/* Export PDF */}
-            <div className="flex justify-start mt-4">
+            <div className="flex justify-start mt-3">
               <button
                 onClick={handleExportPDF}
                 className="bg-red-600 text-white px-4 py-2 rounded-2xl text-sm md:text-base"
