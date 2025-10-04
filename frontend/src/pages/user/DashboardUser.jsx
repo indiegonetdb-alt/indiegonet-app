@@ -98,33 +98,33 @@ export default function DashboardUser() {
         </div>
 
         <div className="flex items-center gap-2">
-          <img
-            src={foto || "/avatar.png"}
-            alt="Foto Profil"
-            className="w-10 h-10 rounded-full object-cover border-2 border-white"
-          />
-          <button
-            onClick={() => navigate("/user/pesan")}
-            className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
-          >
-            Kirim Pesan
-          </button>
-          <button
-            onClick={() => navigate("/user/profil")}
-            className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
-          >
-            Edit Profil
-          </button>
-          <button
-            onClick={() => {
-              localStorage.clear();
-              window.location.href = "/login";
-            }}
-            className="bg-white text-red-600 px-3 py-1 rounded-2xl text-sm md:text-base"
-          >
-            Logout
-          </button>
-        </div>
+  <img
+    src={foto || "/avatar.png"}
+    alt="Foto Profil"
+    className="w-10 h-10 rounded-full object-cover border-2 border-white"
+  />
+  <button
+    onClick={() => navigate("/user/pesan")}
+    className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
+  >
+    Kirim Pesan
+  </button>
+  <button
+    onClick={() => navigate("/user/profil")}
+    className="bg-yellow-400 text-black px-3 py-1 rounded-2xl text-sm md:text-base"
+  >
+    Edit Profil
+  </button>
+  <button
+    onClick={() => {
+      localStorage.clear();
+      window.location.href = "/login";
+    }}
+    className="bg-white text-red-600 px-3 py-1 rounded-2xl text-sm md:text-base"
+  >
+    Logout
+  </button>
+</div>
       </div>
 
       {/* Banner auto slide */}
