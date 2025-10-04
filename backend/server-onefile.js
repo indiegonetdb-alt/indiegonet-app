@@ -12,7 +12,8 @@ app.use(
   cors({
     origin: [
       "https://indiegonet.vercel.app", // frontend kamu di Vercel
-      "http://localhost:5173"              // untuk pengujian lokal
+      "https://indiegonet-backend.vercel.app", // opsional, aman
+      "http://localhost:5173"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
